@@ -6,6 +6,6 @@ export const WalletsSummary = () => {
   const wallets = useWallets();
 
   return <div>
-    {wallets.length} {pluralize('wallet', wallets.length, 'identitie')}
+    {wallets.length} {pluralize('wallet', wallets.length)}
   </div>
 }

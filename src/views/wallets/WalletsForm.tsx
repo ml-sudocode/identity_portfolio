@@ -1,31 +1,31 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Identity, useIdentitiesState } from "../../state/identities";
+import { Wallet, useWalletsState } from "../../state/wallets";
 import slugify from 'slugify';
 
-interface IdentityForm {
+interface WalletForm {
   id: string;
   label: string;
   description: string;
   slug: string;
 }
 
-export default function IdentitiesForm({ identity }: { identity?: Identity }) {
-  const isEditing = identity !== undefined;
+export default function WalletsForm({ wallet }: { wallet?: Wallet }) {
+  const isEditing = wallet !== undefined;
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { isValid }  } = useForm<IdentityForm>();
+  const { register, handleSubmit, formState: { isValid }  } = useForm<WalletForm>();
 
-  const onSubmit = async (values: Omit<IdentityForm, 'id' | 'slug'>) => {
+  const onSubmit = async (values: Omit<WalletForm, 'id' | 'slug'>) => {
     if (isEditing) {
-      useIdentitiesState.getState().edit({
-        id: identity.id,
+      useWalletsState.getState().edit({
+        id: wallet.id,
         description: values.description,
         label: values.label,
         slug: slugify(values.label),
       })
     } else {
-      useIdentitiesState.getState().add({
+      useWalletsState.getState().add({
         id: uuidv4(),
         description: values.description,
         label: values.label,
@@ -33,20 +33,20 @@ export default function IdentitiesForm({ identity }: { identity?: Identity }) {
       });
     }
 
-    navigate('/identities'); // TODO: should land on the detail view? or add new account view?
+    navigate('/wallets'); // TODO: should land on the detail view? or add new account view?
   };
 
-  const onCancel = () => navigate('/identities');
+  const onCancel = () => navigate('/wallets');
 
   return <>
-    <form id="identities-form" onSubmit={handleSubmit(onSubmit)}>
+    <form id="wallets-form" onSubmit={handleSubmit(onSubmit)}>
       <section>
         <label className="mb-3 font-semibold">
           <span>Label&nbsp;</span>
           <span style={{ color: 'red' }}>*</span>
           <input
             {...register('label', { required: 'Label is required' })}
-            defaultValue={identity?.label}
+            defaultValue={wallet?.label}
             className="input my-2 block p-1"
             type="text"
           />
@@ -57,7 +57,7 @@ export default function IdentitiesForm({ identity }: { identity?: Identity }) {
           Description
           <input
             {...register('description')}
-            defaultValue={identity?.description}
+            defaultValue={wallet?.description}
             className="input my-2 block p-1"
             type="textarea"
           />

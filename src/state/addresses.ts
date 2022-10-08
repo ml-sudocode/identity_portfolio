@@ -11,7 +11,7 @@ export interface Address {
   balance: number;
   // https://usedapp-docs.netlify.app/docs/Guides/Connecting/Multi%20Chain#add-kovan-network-to-the-config
   // networks: mainnet, goerli, optimism, avalanche
-  // identityId: fk to Identity
+  // walletId: fk to Wallet
   // assetTypes: token, NFT, 
   // notes: free input
   // purpose: hodl, defi, nft, investing, friends, testing, hackathons, conferences, daos

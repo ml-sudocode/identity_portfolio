@@ -9,7 +9,7 @@ import Nav from "./components/Nav";
 import { About } from "./views/about/About";
 import { Addresses } from "./views/addresses/Addresses";
 import { Home } from "./views/home/Home";
-import { Identities } from "./views/identities/Identities";
+import { Wallets } from "./views/wallets/Wallets";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path="/about" element={<About />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/identities/*" element={<Identities />} />
+            <Route path="/wallets/*" element={<Wallets />} />
             <Route path="/addresses/*" element={<Addresses />} />
             <Route path="*" element={<Navigate to={'/home'} />} />
           </Routes>

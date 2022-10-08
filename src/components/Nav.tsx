@@ -15,7 +15,7 @@ export default function Nav() {
         </div>
       </Link>
       {[
-        ['identities', '/identities'],
+        ['wallets', '/wallets'],
         ['addresses', '/addresses'],
         ['about', '/about'],
       ].map(([title, url]) => (

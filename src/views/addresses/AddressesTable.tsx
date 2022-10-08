@@ -1,9 +1,9 @@
 import React from 'react';
-import { WalletTableRow } from "./WalletTableRow";
-import { useWallets } from '../../state/wallets';
+import { AddressTableRow } from "./AddressTableRow";
+import { useAddresses } from '../../state/addresses';
 
-export const WalletsTable = () => {
-  const wallets = useWallets();
+export const AddressesTable = () => {
+  const addresses = useAddresses();
 
   return (<>
     <div className='w-full'>
@@ -19,7 +19,7 @@ export const WalletsTable = () => {
           </tr>
         </thead> */}
         <tbody>
-          {wallets.map(w => <WalletTableRow wallet={w} key={w.id} />)}
+          {addresses.map(w => <AddressTableRow address={w} key={w.id} />)}
         </tbody>
         <tfoot></tfoot>
       </table>

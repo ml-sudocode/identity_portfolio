@@ -16,7 +16,7 @@ export default function Nav() {
       </Link>
       {[
         ['identities', '/identities'],
-        ['wallets', '/wallets'],
+        ['addresses', '/addresses'],
         ['about', '/about'],
       ].map(([title, url]) => (
         <NavLink to={url} key={title} className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900">{title}</NavLink>

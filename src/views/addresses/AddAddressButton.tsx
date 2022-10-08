@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AddWalletButton() {
+export default function AddAddressButton() {
   const navigate = useNavigate();
   const handleAddClick = useCallback(() => {
-    navigate('/wallets/new');
+    navigate('/addresses/new');
   }, [navigate]);
 
   return <div className="my-4">
-    <button className="button" title="add wallet" onClick={handleAddClick}>💰 Add Wallet</button>
+    <button className="button" title="add address" onClick={handleAddClick}>💰 Add Address</button>
   </div>
 }

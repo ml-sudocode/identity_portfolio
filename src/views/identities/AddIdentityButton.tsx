@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function EditWalletButton({ id }: { id: string }) {
+export default function AddIdentityButton() {
   const navigate = useNavigate();
   const onClick = useCallback(() => {
-    navigate(`/wallets/edit/${id}`);
+    navigate('/identities/new');
   }, [navigate]);
 
   return <div className="my-4">
-    <button className="button" title="edit wallet" onClick={onClick}>✏️ Edit Wallet</button>
-</div>
+    <button className="button" title="add wallet" onClick={onClick}>👤 Add Identity</button>
+  </div>
 }

@@ -8,6 +8,6 @@ export default function AddWalletButton() {
   }, [navigate]);
 
   return <div className="my-4">
-    <button className="border border-slate-300 rounded-md py-2 px-4" title="add wallet" onClick={handleAddClick}>💰 Add Wallet</button>
-</div>
+    <button className="button" title="add wallet" onClick={handleAddClick}>💰 Add Wallet</button>
+  </div>
 }

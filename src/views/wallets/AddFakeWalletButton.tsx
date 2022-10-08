@@ -17,6 +17,6 @@ export default function AddFakeWalletButton()  {
   }
 
   return <div className="my-4">
-    <button className='border border-gray p-2' onClick={onClick}>[development] Add Fake Wallet</button>
+    <button className='border border-gray p-2' onClick={onClick}>🔧 Add Fake Wallet</button>
   </div>
 }

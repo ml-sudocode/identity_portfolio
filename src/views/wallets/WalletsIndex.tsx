@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useWallets } from '../../state/wallets';
 import AddWalletButton from './AddWalletButton';
 import { WalletsTable } from './WalletsTable';
-import { WalletTotals } from './WalletTotals';
+import { WalletSummary } from './WalletSummary';
 
 export const WalletsIndex = () => {
   const wallets = useWallets();
@@ -17,7 +17,7 @@ export const WalletsIndex = () => {
             <>
               <div className="flex flex-nowrap flex-row justify-between items-baseline">
                 <AddWalletButton />
-                <WalletTotals />
+                <WalletSummary />
               </div>
               <WalletsTable />
             </>

@@ -10,7 +10,7 @@ export const WalletsNew = () => {
     <h1 className='text-2xl'><Link to={'/wallets'} className='text-gray-500'>Wallets /</Link> Add</h1>
     { isDevelopment ? <AddFakeWalletButton /> : null }
 
-    <AddWalletConnectButton />
+    {/* <AddWalletConnectButton /> */}
     {/* TODO: WalletConnect or Manual */}
     {/* <WalletsForm /> */}
   </>)

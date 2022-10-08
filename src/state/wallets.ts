@@ -2,6 +2,7 @@ import { unstable_batchedUpdates as batchUpdates } from 'react-dom';
 import produce from 'immer';
 import create from 'zustand';
 import { Wallet as EthWallet } from 'ethers';
+import { Network } from '@usedapp/core';
 
 export interface Wallet {
   id: string;
@@ -10,13 +11,20 @@ export interface Wallet {
   tags: string[];
   keystore: string | null;
   balance: number;
+  // https://usedapp-docs.netlify.app/docs/Guides/Connecting/Multi%20Chain#add-kovan-network-to-the-config
+  // networks: mainnet, goerli, optimism, avalanche
+  // identityId: fk to Identity
+  // assetTypes: token, NFT, 
+  // notes: free input
+  // purpose: hodl, defi, nft, investing, friends, testing, hackathons, conferences, daos
+  // backupLocations
+  // loadedLocations
   // transactions: Transaction[]; TODO
 }
 
 export interface WalletsState {
   set: (fn: (sta: WalletsState) => void) => void;
   batchSet: (fn: (sta: WalletsState) => void) => void;
-  initialized: boolean;
   wallets: Wallet[];
   passphrase: string | null;
   setPassphrase: (p: string) => void;
@@ -36,7 +44,6 @@ export const useWalletsState = create<WalletsState>((set, get) => ({
       get().set(fn);
     });
   },
-  initialized: false,
   wallets: [],
   passphrase: null,
   setPassphrase: (p: string | null) => {

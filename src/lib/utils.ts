@@ -22,6 +22,6 @@ export function isUnlocked(wallet: Wallet) {
   return !isLocked(wallet);
 }
 
-export const pluralize = (thing: string, count: number) => {
-  return count === 1 ? thing : `${thing}s`;
+export const pluralize = (thing: string, count: number, specialCase?: string) => {
+  return count === 1 ? thing : `${specialCase ?? thing}s`;
 }

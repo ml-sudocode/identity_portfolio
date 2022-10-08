@@ -5,3 +5,11 @@
 .active {
   @apply bg-slate-100 text-slate-900;
 }
+
+.button {
+  @apply border border-slate-300 rounded-md py-2 px-4
+}
+
+.buttons-container {
+  @apply flex flex-nowrap flex-row justify-start space-x-2
+}

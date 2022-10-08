@@ -10,8 +10,8 @@ export default function AddFakeIdentityButton()  {
     useIdentitiesState.getState().add({
       id: uuidv4(),
       label: name,
+      description: faker.commerce.productDescription(),
       slug: slugify(name),
-      tags: Array.from({ length: randomIntInRange(0, 5) }).map(() => faker.word.adjective()),
     });  
   }
 

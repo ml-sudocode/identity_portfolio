@@ -5,7 +5,7 @@ import create from 'zustand';
 export interface Identity {
   id: string;
   label: string;
-  tags: string[];
+  description: string;
   slug: string;
 }
 

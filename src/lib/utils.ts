@@ -25,3 +25,7 @@ export function isUnlocked(wallet: Wallet) {
 export const pluralize = (thing: string, count: number, specialCase?: string) => {
   return count === 1 ? thing : `${specialCase ?? thing}s`;
 }
+
+export const truncate = (s: string, chars: number) => {
+  return s.slice(0, chars) + '...';
+}

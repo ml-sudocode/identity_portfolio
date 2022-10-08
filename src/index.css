@@ -11,5 +11,10 @@
 }
 
 .buttons-container {
-  @apply flex flex-nowrap flex-row justify-start space-x-2
+  @apply flex flex-nowrap flex-row justify-start space-x-2 my-2
+}
+
+.input {
+  @apply flex rounded-lg border-2 border-transparent bg-gray-50 py-1 px-2 text-lg leading-5 caret-blue-400 transition-colors focus-within:border-gray-100
+  focus-within:bg-white focus:outline-none focus-visible:border-gray-100 focus-visible:bg-white sm:text-base sm:leading-5;
 }

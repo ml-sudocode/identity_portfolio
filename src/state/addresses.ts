@@ -1,7 +1,7 @@
 import { unstable_batchedUpdates as batchUpdates } from 'react-dom';
 import produce from 'immer';
 import create from 'zustand';
-import { Network } from '@usedapp/core';
+import { persist } from 'zustand/middleware';
 
 export interface Address {
   id: string;
@@ -31,32 +31,41 @@ export interface AddressesState {
   del: (id: string) => void;
 }
 
-export const useAddressesState = create<AddressesState>((set, get) => ({
-  set: (fn) => {
-    set(produce(get(), fn));
-  },
-  batchSet: (fn) => {
-    batchUpdates(() => {
-      get().set(fn);
-    });
-  },
-  addresses: [],
-  add: (address) => {
-    get().batchSet((draft) => {
-      draft.addresses = [...draft.addresses, address]
-    })
-  },
-  edit: (address) => {
-    get().batchSet((draft) => {
-      draft.addresses = [...draft.addresses.slice().filter(w => w.id !== address.id), address]
-    })
-  },
-  del: (id) => {
-    get().batchSet((draft) => {
-      draft.addresses = [...draft.addresses.slice().filter(w => w.id !== id)]
-    })
-  },
-}));
+export const useAddressesState = create<AddressesState>()(
+  persist<AddressesState>(
+    (set, get) => ({
+      set: (fn) => {
+        set(produce(get(), fn));
+      },
+      batchSet: (fn) => {
+        batchUpdates(() => {
+          get().set(fn);
+        });
+      },
+      addresses: [],
+      add: (address) => {
+        get().batchSet((draft) => {
+          draft.addresses = [...draft.addresses, address]
+        })
+      },
+      edit: (address) => {
+        get().batchSet((draft) => {
+          draft.addresses = [...draft.addresses.slice().filter(w => w.id !== address.id), address]
+        })
+      },
+      del: (id) => {
+        get().batchSet((draft) => {
+          draft.addresses = [...draft.addresses.slice().filter(w => w.id !== id)]
+        })
+      },
+    }),
+    {
+      name: 'addresses',
+      // @ts-expect-error see: https://docs.pmnd.rs/zustand/integrations/persisting-store-data#partialize
+      partialize: ({ addresses }) => ({ addresses }),
+    }
+  )
+);
 
 const selAddresses = (s: AddressesState) => s.addresses;
 export function useAddresses() {

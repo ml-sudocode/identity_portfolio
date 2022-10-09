@@ -1,6 +1,7 @@
 import { unstable_batchedUpdates as batchUpdates } from 'react-dom';
 import produce from 'immer';
 import create from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export interface Wallet {
   id: string;
@@ -20,32 +21,41 @@ export interface WalletsState {
   del: (id: string) => void;
 }
 
-export const useWalletsState = create<WalletsState>((set, get) => ({
-  set: (fn) => {
-    set(produce(get(), fn));
-  },
-  batchSet: (fn) => {
-    batchUpdates(() => {
-      get().set(fn);
-    });
-  },
-  wallets: [],
-  add: (wallet) => {
-    get().batchSet((draft) => {
-      draft.wallets = [...draft.wallets, wallet]
-    })
-  },
-  edit: (wallet) => {
-    get().batchSet((draft) => {
-      draft.wallets = [...draft.wallets.slice().filter(w => w.id !== wallet.id), wallet]
-    })
-  },
-  del: (id) => {
-    get().batchSet((draft) => {
-      draft.wallets = [...draft.wallets.slice().filter(w => w.id !== id)]
-    })
-  },
-}));
+export const useWalletsState = create<WalletsState>()(
+  persist<WalletsState>(
+    (set, get) => ({
+      set: (fn) => {
+        set(produce(get(), fn));
+      },
+      batchSet: (fn) => {
+        batchUpdates(() => {
+          get().set(fn);
+        });
+      },
+      wallets: [],
+      add: (wallet) => {
+        get().batchSet((draft) => {
+          draft.wallets = [...draft.wallets, wallet]
+        })
+      },
+      edit: (wallet) => {
+        get().batchSet((draft) => {
+          draft.wallets = [...draft.wallets.slice().filter(w => w.id !== wallet.id), wallet]
+        })
+      },
+      del: (id) => {
+        get().batchSet((draft) => {
+          draft.wallets = [...draft.wallets.slice().filter(w => w.id !== id)]
+        })
+      },
+    }),
+    {
+      name: 'wallets',
+      // @ts-expect-error see: https://docs.pmnd.rs/zustand/integrations/persisting-store-data#partialize
+      partialize: ({ wallets }) => ({ wallets }),
+    }
+  )
+);
 
 const selWallets = (s: WalletsState) => s.wallets;
 export function useWallets() {

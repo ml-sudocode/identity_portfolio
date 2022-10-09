@@ -50,7 +50,12 @@ export function useWallets() {
   return useWalletsState(selWallets);
 }
 
-export function useWalletFromSlug(slug?: string) {
+export function useWallet(id?: string) {
+  const selWallet = (s: WalletsState) => s.wallets.find(w => w.id === id);
+  return useWalletsState(selWallet);
+}
+
+export function useWalletFromSlug(slug?: string | null) {
   const selWallet = (s: WalletsState) => s.wallets.find(i => i.slug === slug);
   return useWalletsState(selWallet);
 }

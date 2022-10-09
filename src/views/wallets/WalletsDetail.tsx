@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { presentEthAddress } from "../../lib/utils";
 import { useAddressesForWallet } from "../../state/addresses";
 import { useWalletFromSlug } from "../../state/wallets";
+import AddAddressButton from "../addresses/AddAddressButton";
 import DeleteWalletButton from "./DeleteWalletButton";
 import EditWalletButton from "./EditWalletButton";
 
@@ -26,6 +27,7 @@ export default function WalletsDetail() {
         </section>
         <section className="my-2">
           <h2 className="text-xl my-4">Addresses</h2>
+          <AddAddressButton walletId={wallet.id} />
           {
             addresses.map(a => {
               return <div key={a.id} className='flex flex-row flex-nowrap space-x-2'>

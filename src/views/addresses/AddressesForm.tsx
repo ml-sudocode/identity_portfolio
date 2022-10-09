@@ -1,11 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Address, useAddressesState } from "../../state/addresses";
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { useWallets } from '../../state/wallets';
-import { useMemo } from 'react';
+import { useWallet, useWallets } from '../../state/wallets';
 
 interface Option {
   value: string,
@@ -35,12 +34,16 @@ export const defaultPurposeOptions = [
 
 export default function AddressesForm({ address }: { address?: Address }) {
   const isEditing = address !== undefined;
+  const [searchParams,] = useSearchParams(); // from AddAddressButton
+  const queryParamWallet = useWallet(searchParams.get('walletId') ?? undefined);
   const navigate = useNavigate()
   const { control, register, handleSubmit, formState: { isValid }  } = useForm<AddressForm>();
   const wallets = useWallets();
 
   const walletOptions = wallets.map(w => ({ label: w.label, value: w.id }))
   const defaultWalletId = () => {
+    if(queryParamWallet) { return { label: queryParamWallet.label, value: queryParamWallet.id } }
+
     if(address) {
       const w = wallets.find(w => w.id === address.walletId);
       return w ? { label: w.label, value: w.id } : undefined;
@@ -52,7 +55,6 @@ export default function AddressesForm({ address }: { address?: Address }) {
   }
 
   const onSubmit = async (values: Omit<AddressForm, 'id'>) => {
-    console.log(values);
     if (isEditing) {
       useAddressesState.getState().edit({
         id: address.id,

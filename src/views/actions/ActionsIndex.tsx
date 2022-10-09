@@ -1,4 +1,6 @@
 
 export default function ActionsIndex() {
-  return <p>ActionsIndex</p>;
+  return <>
+    <h1 className='text-2xl'>Actions</h1>
+  </>;
 }

@@ -1,4 +1,6 @@
 
 export default function ActivityIndex() {
-  return <p>ActivityIndex</p>;
+  return <>
+    <h1 className='text-2xl'>What I Did</h1>
+  </>;
 }

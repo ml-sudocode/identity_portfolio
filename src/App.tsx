@@ -13,6 +13,7 @@ import { Portfolio } from "./views/portfolio/Portfolio";
 import { Activity } from "./views/activity/Activity";
 import { Wallets } from "./views/wallets/Wallets";
 import { Actions } from "./views/actions/Actions";
+import { Transactions } from "./views/transactions/Transactions";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/activity" element={<Activity />} />
             <Route path="/actions" element={<Actions />} />
+            <Route path="/transactions/*" element={<Transactions />} />
             <Route path="/wallets/*" element={<Wallets />} />
             <Route path="/addresses/*" element={<Addresses />} />
             <Route path="*" element={<Navigate to={'/home'} />} />

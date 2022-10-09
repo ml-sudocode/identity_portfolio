@@ -3,17 +3,20 @@ import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { presentBalance } from '../../lib/utils';
 import { useAddress } from '../../state/addresses';
+import { useTransactionsForAddress } from '../../state/transactions';
 import { useWallet } from '../../state/wallets';
+import AddTransactionButton from '../transactions/AddTransactionButton';
+import { TransactionsSummary } from '../transactions/TransactionsSummary';
+import { TransactionsTable } from '../transactions/TransactionsTable';
 import DeleteAddressButton from './DeleteAddressButton';
 import EditAddressButton from './EditAddressButton';
-// import { useAddresses } from "../../state/addresses";
-// import AddressesForm from "./AddressesForm";
 
 export const AddressesDetail = () => {
   const { id } = useParams<{id: string}>();
   const address = useAddress(id);
   const wallet = useWallet(address?.walletId);
   const navigate = useNavigate();
+  const addressTransactions = useTransactionsForAddress(address?.id);
   if(!address) { navigate('/') }
 
   return address ? 
@@ -49,6 +52,14 @@ export const AddressesDetail = () => {
         <section className="my-2">
           <h2 className="text-xl my-4">Purpose</h2>
           <div className='space-x-2'>{address.purpose.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</div>
+        </section>
+        <section className="my-2">
+          <h2 className="text-xl my-4">Transactions</h2>
+          <div className="flex flex-nowrap flex-row justify-between items-baseline">
+            <AddTransactionButton addressId={address.id} />
+            <TransactionsSummary addressId={address.id} />
+          </div>
+          <TransactionsTable providedTransactions={addressTransactions} />
         </section>
       </>
       ) : null;

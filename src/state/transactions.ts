@@ -8,8 +8,9 @@ import { persist } from 'zustand/middleware';
   date: number;
   note: string;
   amount: number;
-  type: string; // investment, payment, registration, income, staking yield, lending
+  type: string;
   addressId: string;
+  txHash: string;
 }
 
 export interface TransactionsState {
@@ -60,4 +61,15 @@ export const useTransactionsState = create<TransactionsState>()(
 const selTransactions = (s: TransactionsState) => s.transactions;
 export function useTransactions() {
   return useTransactionsState(selTransactions);
+}
+
+export function useTransaction(id?: string) {
+  const selTransaction = (s: TransactionsState) => s.transactions.find(t => t.id === id);
+  return useTransactionsState(selTransaction);
+}
+
+export function useTransactionsForAddress(addressId?: string) {
+  const transactions = useTransactions();
+  if(!addressId) return [];
+  return transactions.filter(t => t.addressId === addressId);
 }

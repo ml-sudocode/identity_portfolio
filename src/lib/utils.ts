@@ -26,3 +26,7 @@ export const truncate = (s: string, chars: number) => {
 export function randomElement<T>(a: T[]) {
   return a[Math.floor(Math.random() * a.length)];
 }
+
+export function etherscanTx(txHash: string) {
+  return `https://etherscan.io/tx/${txHash}`;
+}

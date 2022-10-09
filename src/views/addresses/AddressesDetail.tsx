@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { presentBalance } from '../../lib/utils';
 import { useAddress } from '../../state/addresses';
+import { useWallet } from '../../state/wallets';
 import DeleteAddressButton from './DeleteAddressButton';
 import EditAddressButton from './EditAddressButton';
 // import { useAddresses } from "../../state/addresses";
@@ -11,6 +12,7 @@ import EditAddressButton from './EditAddressButton';
 export const AddressesDetail = () => {
   const { id } = useParams<{id: string}>();
   const address = useAddress(id);
+  const wallet = useWallet(address?.walletId);
   const navigate = useNavigate();
   if(!address) { navigate('/') }
 
@@ -25,6 +27,16 @@ export const AddressesDetail = () => {
         <section className="my-2">
           <h2 className="text-xl my-4">Address</h2>
           <p><code>{address.address}</code></p>
+        </section>
+        <section className="my-2">
+          <h2 className="text-xl my-4">Wallet</h2>
+          {
+            wallet ? (
+              <Link to={`/wallets/show/${wallet.slug}`}>{wallet.label}</Link>
+            ) : (
+              <p>Not associated with a wallet</p>
+            )
+          }
         </section>
         <section className="my-2">
           <h2 className="text-xl my-4">Balance</h2>

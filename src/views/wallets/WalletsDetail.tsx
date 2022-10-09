@@ -31,8 +31,10 @@ export default function WalletsDetail() {
           {
             addresses.map(a => {
               return <div key={a.id} className='flex flex-row flex-nowrap space-x-2'>
-                <div className="font-medium">{a.label}</div>
-                <div><code>{presentEthAddress(a.address)}</code></div>
+                <Link to={`/addresses/show/${a.id}`}>
+                  <div className="font-medium">{a.label}</div>
+                  <div><code>{presentEthAddress(a.address)}</code></div>
+                </Link>
               </div>
             })
           }

@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'medellin': "url('public/Medellin.jpg')",
-        'coffee': "url('public/coffee.jpg')",
-        'mountains': "url('public/mountains.jpg')",  
+        'medellin': "url('/Medellin.jpg')",
+        'coffee': "url('/coffee.jpg')",
+        'mountains': "url('/mountains.jpg')",  
       }
     },
   },

@@ -15,9 +15,9 @@ export const WalletsTableRow = ({ wallet }: { wallet: Wallet }) => {
   }
 
   return <tr className="h-16 hover:bg-gray-100 hover:cursor-pointer border-y border-slate-200" onClick={onClick}>
-    <td>{wallet.label}</td>
-    <td>{truncate(wallet.description, 60)}</td>
-    <td>{presentBalance(balance)} ETH</td>
-    <td>{addresses.length} {pluralize('address', addresses.length, 'addresse')}</td>
+    <td className='text-center'>{wallet.label}</td>
+    <td className='text-center'>{truncate(wallet.description, 60)}</td>
+    <td className='text-center'>{presentBalance(balance)} ETH</td>
+    <td className='text-center'>{addresses.length} {pluralize('address', addresses.length, 'addresse')}</td>
   </tr>
 }

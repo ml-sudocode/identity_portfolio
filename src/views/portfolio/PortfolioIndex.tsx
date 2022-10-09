@@ -25,7 +25,7 @@ export default function PortfolioIndex() {
   return <>
     <h1 className='text-2xl'><Link to={'/home'} className='text-gray-500'>Home /</Link> What I Have</h1>
     <section>
-      <input type="text" className="input my-4 w-64" onChange={onChange} placeholder='Search for a wallet or address' />
+      <input type="text" className="input my-4 w-64" onChange={onChange} placeholder='Search by name or description' />
     </section>
     {
       wallets.length > 0 ?

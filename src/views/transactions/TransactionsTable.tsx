@@ -9,6 +9,13 @@ export const TransactionsTable = ({ providedTransactions }: { providedTransactio
   return (<>
     <div className='w-full'>
       <table className="w-full table-auto border-y border-slate-300 border-collapse">
+        <tr>
+          <th>TX Hash</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Note</th>
+        </tr>
         <tbody>
           {t.map(tr => <TransactionTableRow transaction={tr} key={tr.id} />)}
         </tbody>

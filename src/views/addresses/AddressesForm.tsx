@@ -1,10 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Address, useAddressesState } from "../../state/addresses";
+import { Address, useAddresses, useAddressesState } from "../../state/addresses";
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useWallet, useWallets } from '../../state/wallets';
+import { useMemo } from 'react';
+import { randomElement } from '../../lib/utils';
+import { addressNames } from '../../constants';
 
 interface Option {
   value: string,
@@ -38,6 +41,7 @@ export default function AddressesForm({ address }: { address?: Address }) {
   const navigate = useNavigate()
   const { control, register, handleSubmit, formState: { isValid }  } = useForm<AddressForm>();
   const wallets = useWallets();
+  const addresses = useAddresses();
 
   const walletOptions = wallets.map(w => ({ label: w.label, value: w.id }))
   const defaultWalletId = () => {
@@ -54,6 +58,7 @@ export default function AddressesForm({ address }: { address?: Address }) {
   }
 
   const onSubmit = async (values: Omit<AddressForm, 'id'>) => {
+    let newId;
     if (isEditing) {
       useAddressesState.getState().edit({
         id: address.id,
@@ -64,8 +69,9 @@ export default function AddressesForm({ address }: { address?: Address }) {
         walletId: values.walletId.value,
       })
     } else {
+      newId = uuidv4();
       useAddressesState.getState().add({
-        id: uuidv4(),
+        id: newId,
         address: values.address,
         description: values.description,
         label: values.label,
@@ -74,10 +80,32 @@ export default function AddressesForm({ address }: { address?: Address }) {
       });
     }
 
-    navigate('/addresses'); // TODO: should land on the detail view? or add new account view?
+    navigate(`/addresses/show/${newId ?? address?.id}`);
   };
 
   const onCancel = () => navigate('/addresses');
+
+  const defaultAddressName = useMemo(() => {
+    let attemptCount = 0;
+    const attemptLimit = 10;
+    let newName;
+    let wallet;
+
+    if(defaultWalletId()) {
+      wallet = wallets.find(w => w.id === defaultWalletId()?.value)
+    }
+
+    if(!wallet) {
+      return;
+    }
+
+    do {
+      newName = randomElement(addressNames[wallet.label as keyof typeof addressNames] || []);
+      attemptCount += 1;
+    } while (addresses.map(a => a.label).includes(newName) || attemptCount === attemptLimit);
+
+    return newName;
+  }, [wallets]);
 
   return <>
     <form id="addresses-form" onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +115,7 @@ export default function AddressesForm({ address }: { address?: Address }) {
           <span style={{ color: 'red' }}>*</span>
           <input
             {...register('label', { required: 'Label is required' })}
-            defaultValue={address?.label}
+            defaultValue={address?.label ?? defaultAddressName}
             className="input my-2 block p-1"
             type="text"
           />

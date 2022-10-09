@@ -29,11 +29,11 @@ export const AddressesDetail = () => {
           <DeleteAddressButton id={address.id} />
         </div>
         <section className="my-4">
-          <h2 className="text-xl my-4">Address</h2>
+          <h2 className="text-xl font-semibold my-4">Address</h2>
           <p><code>{address.address}</code></p>
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Wallet</h2>
+          <h2 className="text-xl font-semibold my-4">Wallet</h2>
           {
             wallet ? (
               <Link to={`/wallets/show/${wallet.slug}`}>{wallet.label}</Link>
@@ -43,19 +43,19 @@ export const AddressesDetail = () => {
           }
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Balance</h2>
+          <h2 className="text-xl font-semibold my-4">Balance</h2>
           <p>{presentBalance(addressBalance(address.id))} ETH</p>
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Description</h2>
+          <h2 className="text-xl font-semibold my-4">Description</h2>
           <p>{address.description}</p>
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Purpose</h2>
+          <h2 className="text-xl font-semibold my-4">Purpose</h2>
           <div className='space-x-2'>{address.purpose.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</div>
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Transactions</h2>
+          <h2 className="text-xl font-semibold my-4">Transactions</h2>
           <div className="flex flex-nowrap flex-row justify-between items-baseline">
             <AddTransactionButton addressId={address.id} />
             <TransactionsSummary addressId={address.id} />

@@ -23,26 +23,30 @@ export const TransactionsDetail = () => {
           <DeleteTransactionButton id={transaction.id} />
         </div>
         <section className="my-4">
-          <h2 className="text-xl my-4">Transaction</h2>
+          <h2 className="text-xl font-semibold my-4">Transaction</h2>
           <p><ExternalLink href={etherscanTx(transaction.txHash)}>🔗&nbsp;<code>{transaction.txHash}</code></ExternalLink></p>
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Address</h2>
+          <h2 className="text-xl font-semibold my-4">Address</h2>
           {
             address ? (
-              <Link to={`/addresses/show/${address.id}`}>{address.label}</Link>
+              <Link to={`/addresses/show/${address.id}`}>{address.label} (<code>{presentEthAddress(address.address)}</code>)</Link>
             ) : (
               <p>Not associated with a address</p>
             )
           }
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Amount</h2>
+          <h2 className="text-xl font-semibold my-4">Amount</h2>
           <p>{presentBalance(transaction.amount)} ETH</p>
         </section>
         <section className="my-4">
-          <h2 className="text-xl my-4">Note</h2>
+          <h2 className="text-xl font-semibold my-4">Note</h2>
           <p>{transaction.note}</p>
+        </section>
+        <section className="my-4">
+          <h2 className="text-xl font-semibold my-4">Type</h2>
+          <p><span className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{transaction.type}</span></p>
         </section>
       </>
       ) : null;

@@ -21,6 +21,6 @@ export const TransactionsEdit = () => {
 
   return (<>
     <h1 className='text-2xl'><Link to={'/transactions'} className='text-gray-500'>Transactions /</Link> <code>{editingTransaction ? presentEthAddress(editingTransaction?.txHash) : null}</code></h1>
-    <TransactionsForm address={editingTransaction} />
+    <TransactionsForm transaction={editingTransaction} />
   </>)
 }

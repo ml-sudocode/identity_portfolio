@@ -57,6 +57,7 @@ export default function TransactionsForm({ transaction }: { transaction?: Transa
   const defaultDate = transaction?.date ? format(transaction.date, 'y-MM-dd') : undefined;
 
   const onSubmit = async (values: Omit<TransactionForm, 'id'>) => {
+    console.log(values);
     const msDate = getTime(new Date(values.date));
 
     if (isEditing) {
@@ -146,7 +147,6 @@ export default function TransactionsForm({ transaction }: { transaction?: Transa
                 <CreatableSelect
                   {...field}
                   defaultValue={defaultType()}
-                  isMulti
                   placeholder="Select one or more types"
                   options={typeOptions}
                 />

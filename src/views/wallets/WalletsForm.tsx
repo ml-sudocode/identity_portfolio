@@ -2,8 +2,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import CreatableSelect from 'react-select/creatable';
-import { Wallet, useWalletsState } from "../../state/wallets";
+import { Wallet, useWalletsState, useWallets } from "../../state/wallets";
 import slugify from 'slugify';
+import { randomElement } from '../../lib/utils';
+import { walletNames } from '../../constants';
+import { useMemo } from 'react';
 
 interface Option {
   value: string,
@@ -28,6 +31,7 @@ export const backupOptions = [
 
 export default function WalletsForm({ wallet }: { wallet?: Wallet }) {
   const isEditing = wallet !== undefined;
+  const wallets = useWallets();
   const navigate = useNavigate()
   const { control, register, handleSubmit, formState: { isValid }  } = useForm<WalletForm>();
 
@@ -60,6 +64,18 @@ export default function WalletsForm({ wallet }: { wallet?: Wallet }) {
 
   const onCancel = () => navigate('/wallets');
 
+  const defaultWalletName = useMemo(() => {
+    let attemptCount = 0;
+    const attemptLimit = 10;
+    let newName;
+    do {
+      newName = randomElement(walletNames);
+      attemptCount += 1;
+    } while (wallets.map(w => w.label).includes(newName) || attemptCount === attemptLimit);
+
+    return newName;
+  }, [wallets]);
+
   return <>
     <form id="wallets-form" onSubmit={handleSubmit(onSubmit)}>
       <section>
@@ -68,7 +84,7 @@ export default function WalletsForm({ wallet }: { wallet?: Wallet }) {
           <span style={{ color: 'red' }}>*</span>
           <input
             {...register('label', { required: 'Label is required' })}
-            defaultValue={wallet?.label}
+            defaultValue={wallet?.label ?? defaultWalletName}
             className="input my-2 block p-1"
             type="text"
           />

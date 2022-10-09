@@ -15,12 +15,16 @@ export const TransactionTableRow = ({ transaction }: { transaction: Transaction 
   const presentedDate = useMemo(() => {
     return `${formatDistanceToNow(new Date(transaction.date))} ago`;
   }, []);
+  
+  const titleDate = useMemo(() => {
+    return new Date(transaction.date).toDateString();
+  }, []);
 
   return <tr className="h-16 hover:bg-gray-100 hover:cursor-pointer border-y border-slate-200" onClick={onClick}>
-    <td title={transaction?.txHash}><ExternalLink href={etherscanTx(transaction.txHash)}>🔗&nbsp;<code>{presentEthAddress(transaction.txHash)}</code></ExternalLink></td>
-    <td>{presentedDate}</td>
-    <td><span className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{transaction.type}</span></td>
-    <td title={`${transaction.amount} ETH`}>{presentBalance(transaction.amount)} ETH</td>
-    <td>{truncate(transaction.note, 40)}</td>
+    <td className='text-center' title={transaction?.txHash}><ExternalLink href={etherscanTx(transaction.txHash)}>🔗&nbsp;<code>{presentEthAddress(transaction.txHash)}</code></ExternalLink></td>
+    <td className='text-center' title={titleDate}>{presentedDate}</td>
+    <td className='text-center'><span className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{transaction.type}</span></td>
+    <td className='text-center' title={`${transaction.amount} ETH`}>{presentBalance(transaction.amount)} ETH</td>
+    <td className='text-center'>{truncate(transaction.note, 40)}</td>
   </tr>
 }

@@ -30,8 +30,7 @@ export default function ActivityIndex() {
       transactions.length > 0 ?
         (
           <>
-            <div className="flex flex-nowrap flex-row justify-between items-baseline">
-              <AddTransactionButton />
+            <div className="flex flex-nowrap flex-row justify-end items-baseline">
               <TransactionsSummary />
             </div>
             <TransactionsTable providedTransactions={filteredTransactions.map(f => f.item)} />

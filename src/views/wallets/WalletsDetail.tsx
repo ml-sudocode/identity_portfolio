@@ -23,15 +23,15 @@ export default function WalletsDetail() {
           <EditWalletButton slug={wallet.slug} />
           <DeleteWalletButton id={wallet.id} />
         </div>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Description</h2>
           <p>{wallet.description}</p>
         </section>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Backup Locations</h2>
           <p className="space-x-2">{wallet.backupLocation.map(b => <span key={b} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{b}</span>)}</p>
         </section>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Addresses</h2>
           <div className="flex flex-nowrap flex-row justify-between items-baseline">
             <AddAddressButton walletId={wallet.id} />

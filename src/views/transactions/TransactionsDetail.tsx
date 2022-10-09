@@ -22,11 +22,11 @@ export const TransactionsDetail = () => {
           <EditTransactionButton id={transaction.id} />
           <DeleteTransactionButton id={transaction.id} />
         </div>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Transaction</h2>
           <p><ExternalLink href={etherscanTx(transaction.txHash)}>🔗&nbsp;<code>{transaction.txHash}</code></ExternalLink></p>
         </section>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Address</h2>
           {
             address ? (
@@ -36,11 +36,11 @@ export const TransactionsDetail = () => {
             )
           }
         </section>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Amount</h2>
           <p>{presentBalance(transaction.amount)} ETH</p>
         </section>
-        <section className="my-2">
+        <section className="my-4">
           <h2 className="text-xl my-4">Note</h2>
           <p>{transaction.note}</p>
         </section>

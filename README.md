@@ -12,6 +12,16 @@ It’s delivered as a web app, & the hardware it needs is designed to fit in you
 
 That’s it. Nothing fancy, just something useful for you.
 
+## Visual Explainer
+
+![image](https://user-images.githubusercontent.com/16504501/194767071-ac87a436-6746-4455-8cf4-f296470d2539.png)
+
+![image](https://user-images.githubusercontent.com/16504501/194767089-f0bfde89-0d24-49f4-8e72-57e33e644f46.png)
+
+![image](https://user-images.githubusercontent.com/16504501/194767099-86c144d0-4385-4262-94a3-4efbad00805c.png)
+
+![image](https://user-images.githubusercontent.com/16504501/194767115-7f50dd5a-5d92-4381-aef4-550cabb7b606.png)ad
+
 ## A preference for privacy and the problems it create
 
 I will tell this story from my perspective, but I believe my experience is common to a lot of people.

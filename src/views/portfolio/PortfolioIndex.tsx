@@ -63,6 +63,7 @@ export default function PortfolioIndex() {
         <Select
           isMulti
           options={browserFilterOptions()}
+          // @ts-expect-error TODO
           onChange={onBrowserFilterChange}
           placeholder={'Filter by Browser'}
         />
@@ -71,6 +72,7 @@ export default function PortfolioIndex() {
         <Select
           isMulti
           options={deviceFilterOptions()}
+          // @ts-expect-error TODO
           onChange={onDeviceFilterChange}
           placeholder={'Filter by Device'}
         />

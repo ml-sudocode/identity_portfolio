@@ -10,7 +10,6 @@ export function presentEthAddress(address: string) {
 export function presentBalance(balance: number) {
   if(balance === 0) { return 0.0 };
 
-  console.log(balance);
   return balance.toFixed(5).replace(/[0]+$/g,"");
 }
 

@@ -2,19 +2,23 @@ import { v4 as uuidv4 } from 'uuid';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Address, useAddressesState } from "../../state/addresses";
+import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import { useWallets } from '../../state/wallets';
+import { useMemo } from 'react';
 
-interface PurposeField {
+interface Option {
   value: string,
   label: string,
 }
 
 interface AddressForm {
   id: string;
+  walletId: Option;
   address: string;
   label: string;
   description: string;
-  purpose: PurposeField[];
+  purpose: Option[];
   balance: number;
 }
 
@@ -33,8 +37,19 @@ export default function AddressesForm({ address }: { address?: Address }) {
   const isEditing = address !== undefined;
   const navigate = useNavigate()
   const { control, register, handleSubmit, formState: { isValid }  } = useForm<AddressForm>();
+  const wallets = useWallets();
+
+  console.log(wallets);
+  const walletOptions = wallets.map(w => ({ label: w.label, value: w.id }))
+  const defaultWalletId = () => {
+    if(address) {
+      const w = wallets.find(w => w.id === address.walletId);
+      return w ? { label: w.label, value: w.id } : undefined;
+    }
+  };
 
   const onSubmit = async (values: Omit<AddressForm, 'id'>) => {
+    console.log(values);
     if (isEditing) {
       useAddressesState.getState().edit({
         id: address.id,
@@ -43,6 +58,7 @@ export default function AddressesForm({ address }: { address?: Address }) {
         label: values.label,
         purpose: values.purpose.map(p => p.value),
         balance: Number(values.balance),
+        walletId: values.walletId.value,
       })
     } else {
       useAddressesState.getState().add({
@@ -52,6 +68,7 @@ export default function AddressesForm({ address }: { address?: Address }) {
         label: values.label,
         purpose: values.purpose.map(p => p.value),
         balance: Number(values.balance),
+        walletId: values.walletId.value,
       });
     }
 
@@ -123,6 +140,25 @@ export default function AddressesForm({ address }: { address?: Address }) {
                   isMulti
                   placeholder="Select one or more purposes"
                   options={defaultPurposeOptions}
+                />
+              )
+            }}
+          />
+        </label>
+      </section>
+      <section>
+        <label className="mb-3 font-semibold">
+          <span>Wallet&nbsp;</span>
+          <Controller
+            name={"walletId"}
+            control={control} 
+            render={({ field }) => {
+              return (
+                <Select
+                  {...field}
+                  defaultValue={defaultWalletId()}
+                  placeholder="Select a wallet"
+                  options={walletOptions}
                 />
               )
             }}

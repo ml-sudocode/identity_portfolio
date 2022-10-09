@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
+import { presentBalance } from '../../lib/utils';
 import { useAddress } from '../../state/addresses';
 import DeleteAddressButton from './DeleteAddressButton';
 import EditAddressButton from './EditAddressButton';
@@ -21,25 +22,23 @@ export const AddressesDetail = () => {
           <EditAddressButton id={address.id} />
           <DeleteAddressButton id={address.id} />
         </div>
+        <section className="my-2">
+          <h2 className="text-xl my-4">Address</h2>
+          <p><code>{address.address}</code></p>
+        </section>
+        <section className="my-2">
+          <h2 className="text-xl my-4">Balance</h2>
+          <p>{presentBalance(address.balance)} ETH</p>
+        </section>
+        <section className="my-2">
+          <h2 className="text-xl my-4">Description</h2>
+          <p>{address.description}</p>
+        </section>
+        <section className="my-2">
+          <h2 className="text-xl my-4">Purpose</h2>
+          <div className='space-x-2'>{address.purpose.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</div>
+        </section>
       </>
       ) : null;
-  
-  //   const navigate = useNavigate();
-//   const addresses = useAddresses();
-//   const editingAddress = useMemo(() => {
-//     if(!addresses) { return };
-
-//     return addresses.find(t => t.id === id); // TODO: use string / uuid
-//   }, [addresses, id]);
-
-//   useEffect(() => {
-//     if(!editingAddress) {
-//       navigate('/addresses');
-//     }
-//   }, [editingAddress, navigate]);
-
-//   return (<>
-//     <h2><span className="subdued">Addresses</span> / Edit</h2>
-//     <AddressesForm address={editingAddress} />
-//   </>)
+ 
 }

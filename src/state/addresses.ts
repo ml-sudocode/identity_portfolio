@@ -10,6 +10,7 @@ export interface Address {
   description: string;
   purpose: string[];
   balance: number;
+  walletId: string;
   // https://usedapp-docs.netlify.app/docs/Guides/Connecting/Multi%20Chain#add-kovan-network-to-the-config
   // networks: mainnet, goerli, optimism, avalanche
   // walletId: fk to Wallet
@@ -65,4 +66,10 @@ export function useAddresses() {
 export function useAddress(id?: string) {
   const selAddress = (s: AddressesState) => s.addresses.find(w => w.id === id);
   return useAddressesState(selAddress);
+}
+
+export function useAddressesForWallet(walletId?: string) {
+  const addresses = useAddresses();
+  if(!walletId) return [];
+  return addresses.filter(a => a.walletId === walletId);
 }

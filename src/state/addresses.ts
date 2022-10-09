@@ -5,9 +5,10 @@ import { Network } from '@usedapp/core';
 
 export interface Address {
   id: string;
-  value: string;
+  address: string;
   label: string;
-  tags: string[];
+  description: string;
+  purpose: string[];
   balance: number;
   // https://usedapp-docs.netlify.app/docs/Guides/Connecting/Multi%20Chain#add-kovan-network-to-the-config
   // networks: mainnet, goerli, optimism, avalanche

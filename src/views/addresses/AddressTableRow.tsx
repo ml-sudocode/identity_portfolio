@@ -11,10 +11,10 @@ export const AddressTableRow = ({ address }: { address: Address }) => {
   }
 
   return <tr className="h-16 hover:bg-gray-100 hover:cursor-pointer border-y border-slate-200" onClick={onClick}>
-    <td><AccountIcon account={address?.value} /></td>
+    <td><AccountIcon account={address?.address} /></td>
     <td><span className="font-medium">{address.label}</span></td>
-    <td title={address?.value ? address.value : 'locked'}>{address?.value ? <span className="font-mono">{presentEthAddress(address.value)}</span> : 'Locked'}</td>
+    <td title={address?.address ? address.address : 'locked'}>{address?.address ? <span className="font-mono">{presentEthAddress(address.address)}</span> : 'Locked'}</td>
     <td title={`${address.balance} ETH`}>{presentBalance(address.balance)} ETH</td>
-    <td className="space-x-2" title='tags'>{address.tags.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</td>
+    <td className="space-x-2" title='purpose'>{address.purpose.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</td>
   </tr>
 }

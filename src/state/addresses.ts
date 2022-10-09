@@ -2,6 +2,7 @@ import { unstable_batchedUpdates as batchUpdates } from 'react-dom';
 import produce from 'immer';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import { useTransactions } from './transactions';
 
 export interface Address {
   id: string;
@@ -9,7 +10,6 @@ export interface Address {
   label: string;
   description: string;
   purpose: string[];
-  balance: number;
   walletId: string;
   // https://usedapp-docs.netlify.app/docs/Guides/Connecting/Multi%20Chain#add-kovan-network-to-the-config
   // networks: mainnet, goerli, optimism, avalanche
@@ -81,4 +81,17 @@ export function useAddressesForWallet(walletId?: string) {
   const addresses = useAddresses();
   if(!walletId) return [];
   return addresses.filter(a => a.walletId === walletId);
+}
+
+export function useAddressBalance() {
+  const transactions = useTransactions();
+
+  const addressBalance = (addressId: string) => {
+    return transactions.filter(t => t.addressId === addressId)
+      .reduce((memo, t) => memo + t.amount, 0)
+  }
+
+  return {
+    addressBalance
+  }
 }

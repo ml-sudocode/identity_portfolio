@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { presentBalance } from '../../lib/utils';
-import { useAddress } from '../../state/addresses';
+import { useAddress, useAddressBalance } from '../../state/addresses';
 import { useTransactionsForAddress } from '../../state/transactions';
 import { useWallet } from '../../state/wallets';
 import AddTransactionButton from '../transactions/AddTransactionButton';
@@ -17,6 +17,7 @@ export const AddressesDetail = () => {
   const wallet = useWallet(address?.walletId);
   const navigate = useNavigate();
   const addressTransactions = useTransactionsForAddress(address?.id);
+  const { addressBalance } = useAddressBalance();
   if(!address) { navigate('/') }
 
   return address ? 
@@ -43,7 +44,7 @@ export const AddressesDetail = () => {
         </section>
         <section className="my-4">
           <h2 className="text-xl my-4">Balance</h2>
-          <p>{presentBalance(address.balance)} ETH</p>
+          <p>{presentBalance(addressBalance(address.id))} ETH</p>
         </section>
         <section className="my-4">
           <h2 className="text-xl my-4">Description</h2>

@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { AccountIcon } from "../../components/AccountIcon";
 import { presentBalance, presentEthAddress } from "../../lib/utils";
-import { Address } from "../../state/addresses";
+import { Address, useAddressBalance } from "../../state/addresses";
 
 export const AddressTableRow = ({ address }: { address: Address }) => {
   const navigate = useNavigate();
+  const { addressBalance } = useAddressBalance();
+  const balance = addressBalance(address.id);
 
   const onClick = () => {
     navigate(`/addresses/show/${address.id}`)
@@ -14,7 +16,7 @@ export const AddressTableRow = ({ address }: { address: Address }) => {
     <td><AccountIcon account={address?.address} /></td>
     <td><span className="font-medium">{address.label}</span></td>
     <td title={address?.address ? address.address : 'locked'}>{address?.address ? <span className="font-mono">{presentEthAddress(address.address)}</span> : 'Locked'}</td>
-    <td title={`${address.balance} ETH`}>{presentBalance(address.balance)} ETH</td>
+    <td title={`${balance} ETH`}>{presentBalance(balance)} ETH</td>
     <td className="space-x-2" title='purpose'>{address.purpose.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</td>
   </tr>
 }

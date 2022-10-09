@@ -18,7 +18,6 @@ interface AddressForm {
   label: string;
   description: string;
   purpose: Option[];
-  balance: number;
 }
 
 export const defaultPurposeOptions = [
@@ -62,7 +61,6 @@ export default function AddressesForm({ address }: { address?: Address }) {
         description: values.description,
         label: values.label,
         purpose: values.purpose.map(p => p.value),
-        balance: Number(values.balance),
         walletId: values.walletId.value,
       })
     } else {
@@ -72,7 +70,6 @@ export default function AddressesForm({ address }: { address?: Address }) {
         description: values.description,
         label: values.label,
         purpose: values.purpose.map(p => p.value),
-        balance: Number(values.balance),
         walletId: values.walletId.value,
       });
     }
@@ -116,18 +113,6 @@ export default function AddressesForm({ address }: { address?: Address }) {
             defaultValue={address?.address}
             className="input my-2 block p-1"
             type="text"
-          />
-        </label>
-      </section>
-      <section>
-        <label className="mb-3 font-semibold">
-          <span>Balance&nbsp;</span>
-          <span style={{ color: 'red' }}>*</span>
-          <input
-            {...register('balance', { required: 'Balance is required' })}
-            defaultValue={address?.balance}
-            className="input my-2 block p-1"
-            type="number"
           />
         </label>
       </section>

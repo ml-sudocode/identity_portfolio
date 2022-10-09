@@ -17,7 +17,6 @@ export default function AddFakeAddressButton() {
       description: faker.commerce.productDescription(),
       label: faker.name.firstName(),
       purpose: Array.from({ length: randomIntInRange(0, 5) }).map(() => randomElement(defaultPurposeOptions).value),
-      balance: Math.random() > 0.5 ? Math.random() : 0,
       walletId: randomElement(wallets).id,
     });  
   }

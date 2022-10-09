@@ -1,6 +1,6 @@
 # Avengers Pocketdb
 
-[submission](https://ethglobal.com/showcase/avengers-pocketdb-ogub2)
+[(ETHGlobal Bogota Hackathon submission)](https://ethglobal.com/showcase/avengers-pocketdb-ogub2)
 
 ![image](https://user-images.githubusercontent.com/16504501/194766868-61ba1673-ac6e-440d-875f-0b78e15c1930.png)
 
@@ -20,7 +20,7 @@ That’s it. Nothing fancy, just something useful for you.
 
 ![image](https://user-images.githubusercontent.com/16504501/194767099-86c144d0-4385-4262-94a3-4efbad00805c.png)
 
-![image](https://user-images.githubusercontent.com/16504501/194767115-7f50dd5a-5d92-4381-aef4-550cabb7b606.png)ad
+![image](https://user-images.githubusercontent.com/16504501/194767115-7f50dd5a-5d92-4381-aef4-550cabb7b606.png)
 
 ## A preference for privacy and the problems it create
 

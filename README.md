@@ -1,4 +1,6 @@
-=== In Summary, What It Does ===
+# Avengers Pocketdb
+
+## In Summary, What It Does
 
 Avengers Pocketdb is a crypto-native database designed for individuals who are *privacy-conscious* & who like to keep their crypto data *organized*. 
 
@@ -6,8 +8,7 @@ It’s delivered as a web app, & the hardware it needs is designed to fit in you
 
 That’s it. Nothing fancy, just something useful for you.
 
-
-=== A preference for privacy and the problems it create === 
+## A preference for privacy and the problems it create
 
 I will tell this story from my perspective, but I believe my experience is common to a lot of people.
 
@@ -20,7 +21,7 @@ The problem arises when, in addition to protecting my privacy, I also want to be
 Making matters worse, I like trying out new tech and I am security conscious. So I use many devices (laptops and mobiles) and many browsers, each with their own wallet. If you’re like me, you know what I mean by not knowing exactly which wallet to use for a particular transaction :’\
 
 
-=== Solutions… that don’t fully meet our needs ===
+## Solutions… that don’t fully meet our needs ===
 
 Zerion and Zapper are great. At the click of a button, they show you the tokens you have at an address. But they don’t let me track things like funds sent for angel investments. They don’t let me annotate transactions like payments to friends. Or note that I used a certain address to register for this hackathon. Or tell me who knows which addresses I hold. 
 
@@ -29,7 +30,7 @@ That’s why I still need my spreadsheets :(
 In addition, and importantly, I *really* do not like the idea of sending my data to external parties, whether it’s a wallet address or personal notes on transactions. I would prefer to log all this personal financial data on an app that only I can access.
 
 
-=== The Solution: Avengers Pocketdb! ===
+## The Solution: Avengers Pocketdb!
 
 Why the name? 
 The Avengers is made up of many superheroes, and here it represents how we each have multiple identities: with family, frends, work, etc. Pocketdb refers to the fact that the solution fits into your pocket, in the form of a flash drive or a Raspberry Pi.
@@ -42,3 +43,15 @@ What it does
 Bonus (not tied to previously described pain points)
 [ ] Ability to calculate what you made on a certain investment. Using tags for each investment decision (e.g. “# buy May 2022 dip in 3 chunks”), track how you’ve done for the whole investment instead of per single on-chain transaction. Returns multiple on investment and annualized return for some intellectual honesty ;)
 [ ] Two options for running it depending on your travel habits and security concerns: run the app on a Raspberry Pi at home and access your database from anywhere. Or, run the app on your laptop, but keep the underlying data in an encrypted CSV file on a USB flash drive that you keep well-protected
+
+## Setup
+
+1. Clone this repo
+2. Install dependencies
+```
+npm install
+```
+3. Run the dev server
+```
+npm run dev
+```

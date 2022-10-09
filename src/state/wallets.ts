@@ -7,7 +7,7 @@ export interface Wallet {
   label: string;
   description: string;
   slug: string;
-  backupLocation: string;
+  backupLocation: string[];
   
 }
 

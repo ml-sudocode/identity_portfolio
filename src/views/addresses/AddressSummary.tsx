@@ -1,12 +1,15 @@
 import React from 'react';
 import { pluralize, presentBalance } from '../../lib/utils';
-import { useAddresses } from '../../state/addresses';
+import { useAddresses, useAddressesForWallet } from '../../state/addresses';
 
-export const AddressSummary = () => {
+export const AddressSummary = ({ walletId }: { walletId?: string }) => {
   const addresses = useAddresses();
-  const total = addresses.reduce((memo, w) => memo + w.balance, 0);
+  const walletAddresses = useAddressesForWallet(walletId);
+  const a = walletId ? walletAddresses : addresses;
+
+  const total = a.reduce((memo, w) => memo + w.balance, 0);
 
   return <div>
-    {presentBalance(total)} ETH across {addresses.length} {pluralize('address', addresses.length)}
+    {presentBalance(total)} ETH across {a.length} {pluralize('address', a.length)}
   </div>
 }

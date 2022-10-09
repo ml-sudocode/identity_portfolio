@@ -3,6 +3,8 @@ import { presentEthAddress } from "../../lib/utils";
 import { useAddressesForWallet } from "../../state/addresses";
 import { useWalletFromSlug } from "../../state/wallets";
 import AddAddressButton from "../addresses/AddAddressButton";
+import { AddressesTable } from "../addresses/AddressesTable";
+import { AddressSummary } from "../addresses/AddressSummary";
 import DeleteWalletButton from "./DeleteWalletButton";
 import EditWalletButton from "./EditWalletButton";
 
@@ -26,18 +28,16 @@ export default function WalletsDetail() {
           <p>{wallet.description}</p>
         </section>
         <section className="my-2">
+          <h2 className="text-xl my-4">Backup Locations</h2>
+          <p className="space-x-2">{wallet.backupLocation.map(b => <span key={b} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{b}</span>)}</p>
+        </section>
+        <section className="my-2">
           <h2 className="text-xl my-4">Addresses</h2>
-          <AddAddressButton walletId={wallet.id} />
-          {
-            addresses.map(a => {
-              return <div key={a.id} className='flex flex-row flex-nowrap space-x-2'>
-                <Link to={`/addresses/show/${a.id}`}>
-                  <div className="font-medium">{a.label}</div>
-                  <div><code>{presentEthAddress(a.address)}</code></div>
-                </Link>
-              </div>
-            })
-          }
+          <div className="flex flex-nowrap flex-row justify-between items-baseline">
+            <AddAddressButton walletId={wallet.id} />
+            <AddressSummary walletId={wallet.id} />
+          </div>
+          <AddressesTable walletId={wallet.id} />
         </section>
       </>
     ) : null;

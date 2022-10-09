@@ -1,3 +1,4 @@
+// @ts-expect-error TODO
 import Jazzicon from '@metamask/jazzicon'
 import { useEthers } from '@usedapp/core'
 import React, { useEffect, useRef } from 'react'

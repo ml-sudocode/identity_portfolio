@@ -3,6 +3,9 @@ import Fuse from 'fuse.js'
 import { useWallets } from "../../state/wallets";
 import PortfolioWallet from "./PortfolioWallet";
 import useFuzzyWallets from "../../lib/useFuzzyWallets";
+import AddWalletButton from "../wallets/AddWalletButton";
+import { WalletsTable } from "../wallets/WalletsTable";
+import { WalletsSummary } from "../wallets/WalletsSummary";
 
 export default function PortfolioIndex() {
   const wallets = useWallets();
@@ -32,10 +35,20 @@ export default function PortfolioIndex() {
     <section>
       <input type="text" className="input my-4 w-64" onChange={onChange} placeholder='Search for a wallet or address' />
     </section>
-    <main>
-      {
-        filteredWallets.map(w => <PortfolioWallet wallet={w.item} key={w.item.id} />)
-      }
-    </main>
-  </>;
+    {
+      wallets.length > 0 ?
+        (
+          <>
+            <div className="flex flex-nowrap flex-row justify-between items-baseline">
+              <AddWalletButton />
+              <WalletsSummary />
+            </div>
+            <WalletsTable providedWallets={filteredWallets.map(f => f.item)} />
+          </>
+        ) :
+        (
+          <AddWalletButton />
+        )
+    }
+  </>
 }

@@ -2,7 +2,8 @@ import { faker } from '@faker-js/faker';
 import { v4 as uuidv4 } from 'uuid';
 import { useWalletsState } from '../../state/wallets';
 import slugify from 'slugify';
-import { randomIntInRange } from '../../lib/utils';
+import { randomElement, randomIntInRange } from '../../lib/utils';
+import { backupOptions } from './WalletsForm'
 
 export default function AddFakeWalletButton()  {
   const onClick = () => {
@@ -12,6 +13,7 @@ export default function AddFakeWalletButton()  {
       label: name,
       description: faker.commerce.productDescription(),
       slug: slugify(name),
+      backupLocation: [randomElement(backupOptions).value],
     });  
   }
 

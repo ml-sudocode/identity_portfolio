@@ -17,7 +17,7 @@ export default function Nav() {
           </div>
         </div>
       </Link>
-      {[
+      {/* {[
         // ['wallets', '/wallets'],
         // ['addresses', '/addresses'],
         // ['portfolio', '/portfolio'],
@@ -26,7 +26,7 @@ export default function Nav() {
         // ['about', '/about'],
       ].map(([title, url]) => (
         <NavLink to={url} key={title} className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900">{title}</NavLink>
-      ))}
+      ))} */}
     </nav>
   )
 }

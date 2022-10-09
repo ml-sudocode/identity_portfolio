@@ -19,8 +19,8 @@ interface WalletForm {
   description: string;
   slug: string;
   backupLocation: Option[];
-  browsers: Options[];
-  devices: Options[];
+  browsers: Option[];
+  devices: Option[];
 }
 
 export const backupOptions = [

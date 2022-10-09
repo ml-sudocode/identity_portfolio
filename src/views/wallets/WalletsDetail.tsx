@@ -30,6 +30,14 @@ export default function WalletsDetail() {
           <h2 className="text-xl font-semibold my-4">Backup Locations</h2>
           <p className="space-x-2">{wallet.backupLocation.map(b => <span key={b} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{b}</span>)}</p>
         </section>
+        <section className="my-8">
+          <h2 className="text-xl font-semibold my-4">Devices</h2>
+          <p className="space-x-2">{wallet.devices.map(b => <span key={b} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{b}</span>)}</p>
+        </section>
+        <section className="my-8">
+          <h2 className="text-xl font-semibold my-4">Browsers</h2>
+          <p className="space-x-2">{wallet.browsers.map(b => <span key={b} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{b}</span>)}</p>
+        </section>
         <section className="mt-8">
           <h2 className="text-xl font-semibold my-4">Addresses</h2>
           <div className="flex flex-nowrap flex-row justify-between items-baseline">

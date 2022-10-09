@@ -9,7 +9,8 @@ export interface Wallet {
   description: string;
   slug: string;
   backupLocation: string[];
-  
+  browsers: string[];
+  devices: string[];
 }
 
 export interface WalletsState {

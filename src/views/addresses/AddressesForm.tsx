@@ -115,7 +115,8 @@ export default function AddressesForm({ address }: { address?: Address }) {
           <span style={{ color: 'red' }}>*</span>
           <input
             {...register('label', { required: 'Label is required' })}
-            defaultValue={address?.label ?? defaultAddressName}
+            defaultValue={address?.label}
+            // defaultValue={address?.label ?? defaultAddressName}
             className="input my-2 block p-1"
             type="text"
           />

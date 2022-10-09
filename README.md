@@ -1,5 +1,9 @@
 # Avengers Pocketdb
 
+[submission](https://ethglobal.com/showcase/avengers-pocketdb-ogub2)
+
+![image](https://user-images.githubusercontent.com/16504501/194766868-61ba1673-ac6e-440d-875f-0b78e15c1930.png)
+
 ## In Summary, What It Does
 
 Avengers Pocketdb is a crypto-native database designed for individuals who are *privacy-conscious* & who like to keep their crypto data *organized*. 
@@ -55,3 +59,18 @@ npm install
 ```
 npm run dev
 ```
+
+## Gallery
+
+### Design
+
+![image](https://user-images.githubusercontent.com/16504501/194766877-5067dec6-b967-4aaf-81c7-f60fb9a07237.png)
+
+### Transactions
+
+![image](https://user-images.githubusercontent.com/16504501/194766888-6f40c061-6463-47eb-b5d5-460500a4b455.png)
+
+### Actions
+
+![image](https://user-images.githubusercontent.com/16504501/194766898-78097f56-3556-4bae-9d11-b8d2f0372620.png)
+

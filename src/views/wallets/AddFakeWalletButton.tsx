@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useWalletsState } from '../../state/wallets';
 import slugify from 'slugify';
 import { randomElement, randomIntInRange } from '../../lib/utils';
-import { backupOptions } from './WalletsForm'
+import { backupOptions, browserOptions, deviceOptions } from './WalletsForm'
 
 export default function AddFakeWalletButton()  {
   const onClick = () => {
@@ -14,6 +14,8 @@ export default function AddFakeWalletButton()  {
       description: faker.commerce.productDescription(),
       slug: slugify(name),
       backupLocation: [randomElement(backupOptions).value],
+      devices: [randomElement(deviceOptions).value],
+      browsers: [randomElement(browserOptions).value],
     });  
   }
 

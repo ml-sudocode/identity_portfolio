@@ -31,6 +31,7 @@ export const defaultPurposeOptions = [
   { label: 'Hodl', value: 'Hodl' },
   { label: 'Investing', value: 'Investing' },
   { label: 'NFT', value: 'NFT' },
+  { label: 'Payments', value: 'Payments' },
   { label: 'Testing', value: 'Testing' },
 ]
 

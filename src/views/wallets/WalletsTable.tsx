@@ -15,6 +15,8 @@ export const WalletsTable = ({ providedWallets }: { providedWallets?: Wallet[] }
             <th>Description</th>
             <th>Balance</th>
             <th># of Addresses</th>
+            <th>Browsers</th>
+            <th>Devices</th>
           </tr>
         </thead>
         <tbody>

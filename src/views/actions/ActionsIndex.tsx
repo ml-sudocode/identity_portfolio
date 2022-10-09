@@ -3,12 +3,11 @@ import Fuse from 'fuse.js'
 import { useTransactions } from "../../state/transactions";
 import useFuzzyTransactions from "../../lib/useFuzzyTransactions";
 import AddTransactionButton from "../transactions/AddTransactionButton";
-import { TransactionsTable } from "../transactions/TransactionsTable";
-import { TransactionsSummary } from "../transactions/TransactionsSummary";
 import { Link } from "react-router-dom";
 import AddContactButton from "../contacts/AddContactButton";
 import AddAddressButton from "../addresses/AddAddressButton";
 import AddWalletButton from "../wallets/AddWalletButton";
+import PrivacySweepButton from "./PrivacySweepButton";
 
 export default function ActionsIndex() {
   return <>
@@ -18,6 +17,10 @@ export default function ActionsIndex() {
       <AddAddressButton />
       <AddTransactionButton />
       <AddContactButton />
+    </div>
+    <h2 className="text-xl">Privacy Sweep</h2>
+    <div className="buttons-container">
+      <PrivacySweepButton />
     </div>
   </>
 }

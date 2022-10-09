@@ -19,5 +19,7 @@ export const WalletsTableRow = ({ wallet }: { wallet: Wallet }) => {
     <td className='text-center'>{truncate(wallet.description, 60)}</td>
     <td className='text-center'>{presentBalance(balance)} ETH</td>
     <td className='text-center'>{addresses.length} {pluralize('address', addresses.length, 'addresse')}</td>
+    <td className='text-center space-x-2'>{wallet.browsers.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</td>
+    <td className='text-center space-x-2'>{wallet.devices.map(t => <span key={t} className='p-1 bg-slate-100 text-sm border text-light rounded-lg'>{t}</span>)}</td>
   </tr>
 }

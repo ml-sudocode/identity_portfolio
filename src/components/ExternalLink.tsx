@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const ExternalLink = ({ href, children }: { href: string, children: React.ReactNode }) => {
+export const ExternalLink = ({ href, className, children }: { href: string, className?: string, children: React.ReactNode }) => {
   return (
-    <a href={href} target="_blank" rel="nofollow noopener noreferrer">{children}</a>
+    <a href={href} className={className} target="_blank" rel="nofollow noopener noreferrer">{children}</a>
   )
 }

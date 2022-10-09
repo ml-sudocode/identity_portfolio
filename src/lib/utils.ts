@@ -22,3 +22,7 @@ export const truncate = (s: string, chars: number) => {
 
   return s.slice(0, chars) + '...';
 }
+
+export function randomElement<T>(a: T[]) {
+  return a[Math.floor(Math.random() * a.length)];
+}

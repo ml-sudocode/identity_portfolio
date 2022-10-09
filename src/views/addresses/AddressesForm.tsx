@@ -22,7 +22,7 @@ interface AddressForm {
   balance: number;
 }
 
-const defaultPurposeOptions = [
+export const defaultPurposeOptions = [
   { label: 'Conference', value: 'Conference' },
   { label: 'DAO', value: 'DAO' },
   { label: 'DeFi', value: 'DeFi' },
@@ -39,7 +39,6 @@ export default function AddressesForm({ address }: { address?: Address }) {
   const { control, register, handleSubmit, formState: { isValid }  } = useForm<AddressForm>();
   const wallets = useWallets();
 
-  console.log(wallets);
   const walletOptions = wallets.map(w => ({ label: w.label, value: w.id }))
   const defaultWalletId = () => {
     if(address) {
@@ -47,6 +46,10 @@ export default function AddressesForm({ address }: { address?: Address }) {
       return w ? { label: w.label, value: w.id } : undefined;
     }
   };
+
+  const defaultPurpose = () => {
+    return address?.purpose.map(p => ({ label: p, value: p}));
+  }
 
   const onSubmit = async (values: Omit<AddressForm, 'id'>) => {
     console.log(values);
@@ -131,12 +134,13 @@ export default function AddressesForm({ address }: { address?: Address }) {
           <span>Purpose&nbsp;</span>
           <Controller
             name={"purpose"}
-            control={control} 
+            control={control}
+            defaultValue={defaultPurpose()}
             render={({ field }) => {
               return (
                 <CreatableSelect
                   {...field}
-                  defaultValue={address?.purpose.map(p => ({ label: p, value: p}))}
+                  defaultValue={defaultPurpose()}
                   isMulti
                   placeholder="Select one or more purposes"
                   options={defaultPurposeOptions}
@@ -152,6 +156,7 @@ export default function AddressesForm({ address }: { address?: Address }) {
           <Controller
             name={"walletId"}
             control={control} 
+            defaultValue={defaultWalletId()}
             render={({ field }) => {
               return (
                 <Select

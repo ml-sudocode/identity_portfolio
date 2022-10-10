@@ -76,11 +76,14 @@ npm run dev
 
 ![image](https://user-images.githubusercontent.com/16504501/194766877-5067dec6-b967-4aaf-81c7-f60fb9a07237.png)
 
-### Transactions
+### What I Have
 
-![image](https://user-images.githubusercontent.com/16504501/194766888-6f40c061-6463-47eb-b5d5-460500a4b455.png)
+![image](https://user-images.githubusercontent.com/16504501/194800824-7697abd6-5182-4394-8f2c-33b3ed162973.png)
+
+### What I Did
+
+![image](https://user-images.githubusercontent.com/16504501/194800878-66bed167-835e-4a34-9429-8c66cf5cf1fb.png)
 
 ### Actions
 
 ![image](https://user-images.githubusercontent.com/16504501/194766898-78097f56-3556-4bae-9d11-b8d2f0372620.png)
-
